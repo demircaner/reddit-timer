@@ -10,24 +10,10 @@ export default function Navbar() {
           <StyledLink to="/search/javascript">Search</StyledLink>
         </li>
         <li>
-          <StyledLink
-            to={{
-              pathname: '/',
-              hash: '#how-it-works',
-            }}
-          >
-            How it works
-          </StyledLink>
+          <StyledLink to="/#how-it-works">How it works</StyledLink>
         </li>
         <li>
-          <StyledLink
-            to={{
-              pathname: '/',
-              hash: '#about',
-            }}
-          >
-            About
-          </StyledLink>
+          <StyledLink to="/#about">About</StyledLink>
         </li>
       </StyledList>
     </nav>
@@ -41,6 +27,6 @@ const StyledList = styled.ul`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  color: ${(props) => props.theme.color.midDark};
   margin-left: 26px;
 `;

@@ -45,6 +45,11 @@ const GlobalStyle = createGlobalStyle`
     url("/fonts/Bitter-Regular.woff") format("woff");
   }
 
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,

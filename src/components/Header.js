@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import logo from '../assets/images/logo.svg';
 import Navbar from './Navbar';
+import { ReactComponent as UnstyledLogo } from '../assets/images/logo.svg';
 
 export default function Header() {
   return (
     <StyledHeader>
       <Link to="/">
-        <img src={logo} alt="Logo" />
+        <Logo />
       </Link>
       <Navbar />
     </StyledHeader>
@@ -16,7 +16,15 @@ export default function Header() {
 }
 
 const StyledHeader = styled.header`
+  width: 100%;
+  height: 100px;
+  padding: 0 80px;
+  margin: 0 auto;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 32px 78px 72px;
+`;
+
+const Logo = styled(UnstyledLogo)`
+  margin-top: 8px;
 `;
