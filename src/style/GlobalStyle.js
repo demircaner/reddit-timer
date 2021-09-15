@@ -35,15 +35,20 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 700;
     font-style: normal;
     src: url("Montserrat-Bold.woff2") format("woff2"),
- url("Montserrat-Bold.woff") format("woff");
+    url("Montserrat-Bold.woff") format("woff");
   }
 
   /** Bitter Regular **/
   @font-face {
     font-family: "Bitter";
     src: url("/fonts/Bitter-Regular.woff2") format("woff2"),
- url("/fonts/Bitter-Regular.woff") format("woff");
+    url("/fonts/Bitter-Regular.woff") format("woff");
   }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
 
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
