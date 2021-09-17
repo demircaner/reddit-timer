@@ -6,7 +6,7 @@ import Link from '../style/Link';
 export default function Footer() {
   return (
     <StyledFooter>
-      <Link as="a" href="https://ooloo.io/employers">
+      <Link as="a" href="https://profy.dev/employers">
         profy.dev
       </Link>
       <Link to="/">
