@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: ${(props) => props.theme.color.midDark};
-  margin-left: 26px;
+  font-size: ${(props) => props.theme.font.size.small};
+  flex: 1;
 `;
-
 export default StyledLink;

@@ -6,6 +6,10 @@ const theme = {
     midLight: '#d5d5d5',
     light: '#ffffff',
   },
+  size: {
+    headerHeight: '100px',
+    footerHeight: '100px',
+  },
   font: {
     family: {
       default: '"Montserrat", sans-serif',
@@ -13,6 +17,7 @@ const theme = {
     },
     size: {
       default: '16px',
+      small: '14px',
     },
     lineHeight: {
       default: 1.69,

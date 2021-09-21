@@ -17,7 +17,7 @@ export default function Header() {
 
 const StyledHeader = styled.header`
   width: 100%;
-  height: 100px;
+  height: ${(props) => props.theme.size.headerHeight};
   padding: 0 80px;
   margin: 0 auto;
   display: flex;

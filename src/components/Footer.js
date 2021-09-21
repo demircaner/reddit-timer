@@ -1,28 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from '../assets/images/sign.svg';
+import { ReactComponent as UnstyledLogo } from '../assets/images/sign.svg';
 import Link from '../style/Link';
 
 export default function Footer() {
   return (
     <StyledFooter>
-      <Link as="a" href="https://profy.dev/employers">
+      <LeftLink as="a" href="https://profy.dev/employers">
         profy.dev
-      </Link>
+      </LeftLink>
       <Link to="/">
         <Logo />
       </Link>
-      <Link to="/terms">Terms & Privacy</Link>
+      <RightLink to="/terms">Terms & Privacy</RightLink>
     </StyledFooter>
   );
 }
 
 const StyledFooter = styled.footer`
-  height: 100px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  max-width: 980px;
+  height: ${(props) => props.theme.size.footerHeight};
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: aquamarine;
+`;
+
+const Logo = styled(UnstyledLogo)`
+  display: block;
+`;
+
+const LeftLink = styled(Link)`
+  text-align: left;
+`;
+
+const RightLink = styled(Link)`
+  text-align: right;
 `;
