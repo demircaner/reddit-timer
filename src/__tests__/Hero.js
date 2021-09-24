@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
-import App from '../App';
+import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
 
 function setup() {
   render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 }
 

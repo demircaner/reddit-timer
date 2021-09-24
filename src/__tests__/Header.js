@@ -17,7 +17,7 @@ function setup(initialPath = '/') {
           return null;
         }}
       />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   return { history };
 }
