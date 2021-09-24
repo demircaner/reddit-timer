@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import StyledLink from '../style/Link';
+import { HeaderLink } from '../style/Link';
 
 export default function Navbar() {
   return (
     <nav>
       <StyledList>
         <li>
-          <StyledLink to="/search/javascript">Search</StyledLink>
+          <HeaderLink to="/search/javascript">Search</HeaderLink>
         </li>
         <li>
-          <StyledLink to="/#how-it-works">How it works</StyledLink>
+          <HeaderLink to="/#how-it-works">How it works</HeaderLink>
         </li>
         <li>
-          <StyledLink to="/#about">About</StyledLink>
+          <HeaderLink to="/#about">About</HeaderLink>
         </li>
       </StyledList>
     </nav>

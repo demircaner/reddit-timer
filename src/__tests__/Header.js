@@ -17,7 +17,7 @@ function setup(initialPath = '/') {
           return null;
         }}
       />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   return { history };
 }
@@ -27,7 +27,7 @@ describe('Header', () => {
     setup('/search/javascript');
     const logoLink = screen.getByRole('link', { name: /logo\.svg/i });
     userEvent.click(logoLink);
-    const text = screen.getByText(/home page/i);
+    const text = screen.getByText(/No reactions to your reddit posts/i);
     expect(text).toBeInTheDocument();
   });
 
@@ -49,7 +49,7 @@ describe('Header', () => {
     const hashLink = screen.getByRole('link', { name: link });
     userEvent.click(hashLink);
 
-    const text = screen.getByText(/home page/i);
+    const text = screen.getByText(/No reactions to your reddit posts/i);
     expect(text).toBeInTheDocument();
 
     expect(history.location.hash).toEqual(hash);

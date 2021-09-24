@@ -17,7 +17,7 @@ export default function App() {
           <Route exact path="/">
             <Hero />
           </Route>
-          <Route path="/search/:javascript">Search page</Route>
+          <Route path="/search/javascript">Search page</Route>
           <Route path="/terms">Terms page</Route>
           <Route>404 - Not Found</Route>
         </Switch>
@@ -31,6 +31,5 @@ const ContentContainer = styled.main`
   min-height: ${(props) => `calc(100vh - ${props.theme.size.headerHeight} 
   - ${props.theme.size.footerHeight})`};
   display: flex;
-  align-items: center;
   justify-content: center;
 `;
