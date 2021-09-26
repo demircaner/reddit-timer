@@ -23,7 +23,7 @@ describe('Footer', () => {
     setup('/search/javascript');
     const logoLink = screen.getByRole('link', { name: /sign.svg/i });
     userEvent.click(logoLink);
-    const text = screen.getByText(/home page/i);
+    const text = screen.getByText(/No reactions to your reddit posts/i);
     expect(text).toBeInTheDocument();
   });
 

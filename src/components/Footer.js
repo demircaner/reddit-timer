@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as UnstyledLogo } from '../assets/images/sign.svg';
-import Link from '../style/Link';
+import { FooterLink } from '../style/Link';
 
 export default function Footer() {
   return (
@@ -25,17 +26,16 @@ const StyledFooter = styled.footer`
   align-items: center;
   margin: 0 auto;
   padding: 0 20px;
-  background-color: aquamarine;
 `;
 
 const Logo = styled(UnstyledLogo)`
   display: block;
 `;
 
-const LeftLink = styled(Link)`
+const LeftLink = styled(FooterLink)`
   text-align: left;
 `;
 
-const RightLink = styled(Link)`
+const RightLink = styled(FooterLink)`
   text-align: right;
 `;
