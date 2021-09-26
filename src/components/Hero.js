@@ -2,57 +2,68 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import heatmap from '../assets/images/heatmap.png';
+import { defaultSubreddit } from '../config';
 
 export default function Hero() {
   return (
-    <StyledContainer>
+    <StyledSection>
       <Title>No reactions to your reddit posts?</Title>
       <Subtitle>
         Great timing, great results! Find the best time to post on your
         subreddit.
       </Subtitle>
-      <Link to="/search/javascript">
-        <StyledButton type="button">SHOW ME THE BEST TIME</StyledButton>
+
+      <StyledButton to={`/search/${defaultSubreddit}`}>
+        Show me the best time
+      </StyledButton>
+
+      <Subreddit>
+        r/
+        {defaultSubreddit}
+      </Subreddit>
+      <Link to={`/search/${defaultSubreddit}`}>
+        <StyledImage src={heatmap} alt="heatmap of reddit posts" />
       </Link>
-      <Subreddit>r/javascript</Subreddit>
-      <Link to="/search/javascript">
-        <img src={heatmap} alt="heatmap of reddit posts" />
-      </Link>
-    </StyledContainer>
+    </StyledSection>
   );
 }
 
-const StyledContainer = styled.div`
-  width: 100%;
-  max-width: 1084px;
+const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 20px;
 `;
 
 const Title = styled.h1`
-  font-size: 2.3rem;
-  font-family: ${(props) => props.theme.font.family.headline};
-  color: ${(props) => props.theme.color.dark};
-  margin-bottom: 20px;
+  margin-top: 19px;
 `;
 
 const Subtitle = styled.p`
   font-size: ${(props) => props.theme.font.size.small};
-  margin-bottom: 45px;
+  margin: 6px 0 42px;
+  letter-spacing: ${(props) => props.theme.font.letterSpacing.default};
 `;
 
-const StyledButton = styled.button`
-  background-color: ${(props) => props.theme.color.btnPrimary};
+const StyledButton = styled(Link)`
+  padding: 10px 16px;
+  font-size: ${(props) => props.theme.font.size.small};
+  font-weight: 500;
   color: ${(props) => props.theme.color.light};
-  padding: 10px 15px;
+  background-color: ${(props) => props.theme.color.primary};
   border: none;
   border-radius: 4px;
-  font-size: ${(props) => props.theme.font.size.small};
   cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
 `;
 
 const Subreddit = styled.p`
   color: ${(props) => props.theme.color.text};
-  margin-bottom: 36px;
+`;
+
+const StyledImage = styled.img`
+  width: 100%;
+  max-width: 1114px;
+  margin-top: 32px;
 `;

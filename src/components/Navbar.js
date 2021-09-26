@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { defaultSubreddit } from '../config';
 import { HeaderLink } from '../style/Link';
 
 export default function Navbar() {
@@ -7,7 +8,7 @@ export default function Navbar() {
     <nav>
       <StyledList>
         <li>
-          <HeaderLink to="/search/javascript">Search</HeaderLink>
+          <HeaderLink to={`/search/${defaultSubreddit}`}>Search</HeaderLink>
         </li>
         <li>
           <HeaderLink to="/#how-it-works">How it works</HeaderLink>

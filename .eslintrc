@@ -6,14 +6,28 @@
     "cypress/globals": true
   },
   "parser": "babel-eslint",
-  "extends": ["airbnb"],
-  "plugins": ["cypress", "react-hooks"],
+  "extends": [
+    "airbnb",
+    "plugin:styled-components-a11y/recommended"
+  ],
+  "plugins": [
+    "styled-components-a11y",
+    "cypress",
+    "react-hooks"
+  ],
   "rules": {
     "cypress/no-assigning-return-values": "error",
     "cypress/no-unnecessary-waiting": "error",
     "cypress/assertion-before-screenshot": "warn",
     "cypress/no-force": "warn",
-    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js"
+        ]
+      }
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error"
   }
