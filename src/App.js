@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import HomePage from './pages/HomePage';
 import GlobalStyle from './style/GlobalStyle';
 import theme from './style/theme';
 
@@ -15,7 +15,7 @@ export default function App() {
       <ContentContainer>
         <Switch>
           <Route exact path="/">
-            <Hero />
+            <HomePage />
           </Route>
           <Route path="/search/javascript">Search page</Route>
           <Route path="/terms">Terms page</Route>
@@ -32,4 +32,5 @@ const ContentContainer = styled.main`
   - ${props.theme.size.footerHeight})`};
   display: flex;
   justify-content: center;
+  flex-direction: column;
 `;
