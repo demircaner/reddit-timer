@@ -45,7 +45,7 @@ export default function InfoSection() {
 
 const StyledSection = styled.section`
   width: 52%;
-  max-width: 800px;
+  max-width: 738px;
   margin: 132px auto;
 `;
 
@@ -55,4 +55,6 @@ const InfoBlock = styled.div`
 
 const StyledList = styled.ul`
   list-style: inside;
+  text-indent: -23px;
+  margin-left: 23px;
 `;

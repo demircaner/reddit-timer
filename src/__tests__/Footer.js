@@ -8,15 +8,15 @@ function setup(initialPath = '/') {
   render(
     <MemoryRouter initialEntries={[initialPath]}>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
 describe('Footer', () => {
   test('navigates to profiy.dev/employers when profy.dev is clicked', () => {
     setup();
-    const link = screen.getByRole('link', { name: /profy.dev/i });
-    expect(link.getAttribute('href')).toEqual('https://profy.dev/employers');
+    const link = screen.getAllByRole('link', { name: /profy.dev/i });
+    expect(link[1].getAttribute('href')).toEqual('https://profy.dev/employers');
   });
 
   test('navigates to homepage when the logo is clicked', () => {

@@ -8,7 +8,7 @@ function setup() {
   render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -27,5 +27,21 @@ describe('Hero', () => {
     const heatmapImage = screen.getByAltText(/heatmap of reddit posts/i);
     userEvent.click(heatmapImage);
     expect(screen.getByText(/search page/i)).toBeInTheDocument();
+  });
+});
+
+describe('Info Section', () => {
+  test('Navigates to https://profy.dev when profy.dev link is clicked', () => {
+    setup();
+    const link = screen.getAllByRole('link', { name: /profy.dev/i });
+    expect(link[0].getAttribute('href')).toEqual('https://profy.dev');
+  });
+
+  test('Navigates to https://profy.dev/employers when more info link is clicked', () => {
+    setup();
+    const link = screen.getByRole('link', {
+      name: /click here for more information/i,
+    });
+    expect(link.getAttribute('href')).toEqual('https://profy.dev/employers');
   });
 });
