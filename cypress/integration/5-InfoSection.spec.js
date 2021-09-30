@@ -37,7 +37,7 @@ describeOnBranches('info-section')('Info Section', () => {
     cy.wait(1000);
     cy.window().then(($window) => {
       // scroll should be greater than any number
-      expect($window.scrollY).to.be.greaterThan(100);
+      expect($window.scrollY).to.be.greaterThan(10);
     });
   });
 });
