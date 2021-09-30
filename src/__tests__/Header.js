@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
@@ -17,7 +17,7 @@ function setup(initialPath = '/') {
           return null;
         }}
       />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   return { history };
 }
@@ -45,12 +45,16 @@ describe('Header', () => {
     ['How it works', '#how-it-works'],
   ])('navigates %s section when %s link is clicked', (link, hash) => {
     const { history } = setup('/search/javascript');
-
+    const onScroll = jest.fn().mockImplementation(() => console.log('hi'));
     const hashLink = screen.getByRole('link', { name: link });
     userEvent.click(hashLink);
 
-    const text = screen.getByText(/No reactions to your reddit posts/i);
-    expect(text).toBeInTheDocument();
+    const section = screen.getByText(link);
+    fireEvent.scroll(section);
+
+    waitFor(() => {
+      expect(onScroll).toHaveBeenCalled();
+    }, 0);
 
     expect(history.location.hash).toEqual(hash);
   });

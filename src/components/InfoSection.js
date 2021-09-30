@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function InfoSection() {
   return (
     <StyledSection>
-      <InfoBlock>
+      <InfoBlock id="how-it-works">
         <h2>How it works</h2>
         <StyledList>
           <li>We find the 500 top posts from the past year for a subreddit.</li>
@@ -16,7 +16,7 @@ export default function InfoSection() {
         </StyledList>
       </InfoBlock>
 
-      <div>
+      <div id="about">
         <h2>About</h2>
         <p>
           This app was created during a course on
