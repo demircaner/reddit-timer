@@ -8,7 +8,7 @@ function setup() {
   render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 }
 
