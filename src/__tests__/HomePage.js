@@ -33,6 +33,13 @@ describe('Hero', () => {
 describe('Info Section', () => {
   test('Navigates to https://profy.dev when profy.dev link is clicked', () => {
     setup();
+
+    /**
+      There are two links with profy.dev on the page
+      One in the footer and the other in the info section
+      so you need to use getAll instead of get and pass the right index to get
+      the desired text in this case it is 0
+     */
     const link = screen.getAllByRole('link', { name: /profy.dev/i });
     expect(link[0].getAttribute('href')).toEqual('https://profy.dev');
   });

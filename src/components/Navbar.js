@@ -11,12 +11,12 @@ export default function Navbar() {
           <NavLink to={`/search/${defaultSubreddit}`}>Search</NavLink>
         </li>
         <li>
-          <NavLink smooth to="#how-it-works">
+          <NavLink smooth to="/#how-it-works">
             How it works
           </NavLink>
         </li>
         <li>
-          <NavLink smooth to="#about">
+          <NavLink smooth to="/#about">
             About
           </NavLink>
         </li>

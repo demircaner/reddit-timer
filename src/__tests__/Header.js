@@ -43,16 +43,22 @@ describe('Header', () => {
   });
 
   test.each([
-    ['About', '#about'],
     ['How it works', '#how-it-works'],
+    ['About', '#about'],
   ])('navigates %s section when %s link is clicked', (link, hash) => {
     const { history } = setup('/search/javascript');
     const onScroll = jest.fn().mockImplementation(() => 'hi');
     const hashLink = screen.getByRole('link', { name: link });
     userEvent.click(hashLink);
 
-    const section = screen.getByText(link);
-    fireEvent.scroll(section);
+    /**
+      There are two text with About and How it works on the page
+      One in the navigation and the other in the info section
+      so you need to use getAll instead of get and pass the right index to get
+      the desired text in this case it is 1
+     */
+    const section = screen.getAllByText(link);
+    fireEvent.scroll(section[1]);
 
     waitFor(() => {
       expect(onScroll).toHaveBeenCalled();
