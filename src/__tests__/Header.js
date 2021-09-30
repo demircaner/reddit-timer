@@ -1,5 +1,7 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  fireEvent, render, screen, waitFor,
+} from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
@@ -17,7 +19,7 @@ function setup(initialPath = '/') {
           return null;
         }}
       />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   return { history };
 }
@@ -45,7 +47,7 @@ describe('Header', () => {
     ['How it works', '#how-it-works'],
   ])('navigates %s section when %s link is clicked', (link, hash) => {
     const { history } = setup('/search/javascript');
-    const onScroll = jest.fn().mockImplementation(() => console.log('hi'));
+    const onScroll = jest.fn().mockImplementation(() => 'hi');
     const hashLink = screen.getByRole('link', { name: link });
     userEvent.click(hashLink);
 
