@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
@@ -33,15 +33,9 @@ describe('Hero', () => {
 describe('Info Section', () => {
   test('Navigates to https://profy.dev when profy.dev link is clicked', () => {
     setup();
-
-    /**
-      There are two links with profy.dev on the page
-      One in the footer and the other in the info section
-      so you need to use getAll instead of get and pass the right index to get
-      the desired text in this case it is 0
-     */
-    const link = screen.getAllByRole('link', { name: /profy.dev/i });
-    expect(link[0].getAttribute('href')).toEqual('https://profy.dev');
+    const main = screen.getByRole('main');
+    const link = within(main).getByRole('link', { name: /profy.dev/i });
+    expect(link.getAttribute('href')).toEqual('https://profy.dev');
   });
 
   test('Navigates to https://profy.dev/employers when more info link is clicked', () => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import Info from './Info';
 
 export default function InfoSection() {
   return (
-    <StyledSection>
-      <InfoBlock id="how-it-works">
-        <h2>How it works</h2>
+    <StyledArticle>
+      <Info id="how-it-works" headline="How it works">
         <StyledList>
           <li>We find the 500 top posts from the past year for a subreddit.</li>
           <li>
@@ -14,10 +14,9 @@ export default function InfoSection() {
           </li>
           <li>See immediately when to submit your reddit post.</li>
         </StyledList>
-      </InfoBlock>
+      </Info>
 
-      <div id="about">
-        <h2>About</h2>
+      <Info id="about" headline="About">
         <p>
           This app was created during a course on
           {' '}
@@ -38,19 +37,16 @@ export default function InfoSection() {
           </a>
           {' '}
         </p>
-      </div>
-    </StyledSection>
+      </Info>
+    </StyledArticle>
   );
 }
 
-const StyledSection = styled.section`
-  width: 52%;
-  max-width: 738px;
-  margin: 132px auto;
-`;
-
-const InfoBlock = styled.div`
-  margin-bottom: 105px;
+const StyledArticle = styled.section`
+  width: 100%;
+  max-width: 778px;
+  margin: 32px auto 0;
+  padding: 0 20px;
 `;
 
 const StyledList = styled.ul`
