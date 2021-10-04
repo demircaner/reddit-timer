@@ -93,7 +93,16 @@ const GlobalStyle = createGlobalStyle`
 
 h1 {
   font-size: ${(props) => props.theme.font.size.large};
+}
 
+h2 {
+  font-size: ${(props) => props.theme.font.size.medium};
+
+}
+
+a {
+  text-decoration: none;
+  color: hsl(199deg, 100%, 65%);
 }
 
   ol, ul {

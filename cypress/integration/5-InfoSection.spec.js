@@ -18,21 +18,17 @@ describeOnBranches('info-section')('Info Section', () => {
   });
 
   it('Scrolls to "How it works" when clicking link in header', () => {
-    cy.get('header')
-      .contains('How it works')
-      .click();
+    cy.get('header').contains('How it works').click();
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(1000);
     cy.window().then(($window) => {
       // scroll should be greater than any number
-      expect($window.scrollY).to.be.greaterThan(100);
+      expect($window.scrollY).to.be.greaterThan(10);
     });
   });
 
   it('Scrolls to "About" when clicking link in header', () => {
-    cy.get('header')
-      .contains('About')
-      .click();
+    cy.get('header').contains('About').click();
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(1000);
     cy.window().then(($window) => {

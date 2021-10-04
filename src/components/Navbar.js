@@ -1,20 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import { defaultSubreddit } from '../config';
-import { HeaderLink } from '../style/Link';
+import { NavLink } from '../style/Link';
 
 export default function Navbar() {
   return (
     <nav>
       <StyledList>
         <li>
-          <HeaderLink to={`/search/${defaultSubreddit}`}>Search</HeaderLink>
+          <NavLink to={`/search/${defaultSubreddit}`}>Search</NavLink>
         </li>
         <li>
-          <HeaderLink to="/#how-it-works">How it works</HeaderLink>
+          <NavLink smooth to="/#how-it-works">
+            How it works
+          </NavLink>
         </li>
         <li>
-          <HeaderLink to="/#about">About</HeaderLink>
+          <NavLink smooth to="/#about">
+            About
+          </NavLink>
         </li>
       </StyledList>
     </nav>

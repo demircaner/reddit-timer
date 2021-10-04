@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
@@ -13,9 +13,10 @@ function setup(initialPath = '/') {
 }
 
 describe('Footer', () => {
-  test('navigates to profiy.dev/employers when profy.dev is clicked', () => {
+  test('navigates to profiy.dev/employers when profy.dev link is clicked', () => {
     setup();
-    const link = screen.getByRole('link', { name: /profy.dev/i });
+    const footer = screen.getByRole('contentinfo');
+    const link = within(footer).getByRole('link', { name: /profy.dev/i });
     expect(link.getAttribute('href')).toEqual('https://profy.dev/employers');
   });
 

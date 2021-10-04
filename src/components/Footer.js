@@ -6,7 +6,7 @@ import { FooterLink } from '../style/Link';
 
 export default function Footer() {
   return (
-    <StyledFooter>
+    <StyledFooter role="contentinfo">
       <LeftLink as="a" href="https://profy.dev/employers">
         profy.dev
       </LeftLink>

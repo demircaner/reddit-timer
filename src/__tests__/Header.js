@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {
+  fireEvent, render, screen, waitFor,
+} from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
@@ -41,16 +43,26 @@ describe('Header', () => {
   });
 
   test.each([
-    ['About', '#about'],
     ['How it works', '#how-it-works'],
+    ['About', '#about'],
   ])('navigates %s section when %s link is clicked', (link, hash) => {
     const { history } = setup('/search/javascript');
-
+    const onScroll = jest.fn().mockImplementation(() => 'hi');
     const hashLink = screen.getByRole('link', { name: link });
     userEvent.click(hashLink);
 
-    const text = screen.getByText(/No reactions to your reddit posts/i);
-    expect(text).toBeInTheDocument();
+    /**
+      There are two text with About and How it works on the page
+      One in the navigation and the other in the info section
+      so you need to use getAll instead of get and pass the right index to get
+      the desired text in this case it is 1
+     */
+    const section = screen.getAllByText(link);
+    fireEvent.scroll(section[1]);
+
+    waitFor(() => {
+      expect(onScroll).toHaveBeenCalled();
+    }, 0);
 
     expect(history.location.hash).toEqual(hash);
   });

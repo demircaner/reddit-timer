@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
@@ -7,7 +7,7 @@ const StyledLink = styled(Link)`
   font-size: ${(props) => props.theme.font.size.small};
 `;
 
-export const HeaderLink = styled(StyledLink)`
+export const NavLink = styled(StyledLink)`
   margin-left: 26px;
 `;
 
