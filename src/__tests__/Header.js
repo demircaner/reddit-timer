@@ -1,5 +1,7 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  fireEvent, render, screen, waitFor,
+} from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
@@ -17,7 +19,7 @@ function setup(initialPath = '/') {
           return null;
         }}
       />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   return { history };
 }

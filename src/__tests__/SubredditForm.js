@@ -16,7 +16,7 @@ function setup(initialPath = '/') {
           return null;
         }}
       />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   return { history };
 }
@@ -36,7 +36,7 @@ describe('Subreddit Form', () => {
     userEvent.click(searchButton);
     const subredditInput = screen.getByLabelText('r/');
     expect(history.location.pathname).toEqual(
-      `/search/${subredditInput.value}`
+      `/search/${subredditInput.value}`,
     );
   });
 });

@@ -8,7 +8,7 @@ function setup() {
   render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 }
 
@@ -20,7 +20,7 @@ describe('Hero', () => {
     });
     userEvent.click(ctaButton);
     expect(
-      screen.getByText(/Find the best time for a subreddit/i)
+      screen.getByText(/Find the best time for a subreddit/i),
     ).toBeInTheDocument();
   });
 
@@ -29,7 +29,7 @@ describe('Hero', () => {
     const heatmapImage = screen.getByAltText(/heatmap of reddit posts/i);
     userEvent.click(heatmapImage);
     expect(
-      screen.getByText(/Find the best time for a subreddit/i)
+      screen.getByText(/Find the best time for a subreddit/i),
     ).toBeInTheDocument();
   });
 });
