@@ -8,7 +8,7 @@ function setup() {
   render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -19,14 +19,18 @@ describe('Hero', () => {
       name: /show me the best time/i,
     });
     userEvent.click(ctaButton);
-    expect(screen.getByText(/search page/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Find the best time for a subreddit/i)
+    ).toBeInTheDocument();
   });
 
   test('Navigates to search page when the heatmap is clicked ', () => {
     setup();
     const heatmapImage = screen.getByAltText(/heatmap of reddit posts/i);
     userEvent.click(heatmapImage);
-    expect(screen.getByText(/search page/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Find the best time for a subreddit/i)
+    ).toBeInTheDocument();
   });
 });
 

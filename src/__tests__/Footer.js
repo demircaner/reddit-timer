@@ -8,7 +8,7 @@ function setup(initialPath = '/') {
   render(
     <MemoryRouter initialEntries={[initialPath]}>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
