@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
 import { Button as StyledButton } from '../style/Link';
-// import { defaultSubreddit } from '../config';
 
 export default function SubredditForm() {
   const { subreddit } = useParams();
   const [query, setQuery] = useState(subreddit);
 
+  useEffect(() => {
+    setQuery(subreddit);
+  }, [subreddit]);
+
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.replace(`/search/${query}`);
+    history.push(`/search/${query}`);
   };
 
   const handleChange = (e) => {
