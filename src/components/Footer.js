@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as UnstyledLogo } from '../assets/images/sign.svg';
-import { FooterLink } from '../style/Link';
+import { FooterLink } from '../common/Links';
 
 export default function Footer() {
   return (

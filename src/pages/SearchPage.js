@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SubredditForm from '../components/SubredditForm';
+import UnstyledContainer from '../common/Container';
 
 export default function SearchPage() {
   return (
@@ -11,7 +12,7 @@ export default function SearchPage() {
   );
 }
 
-const StyledSection = styled.section`
+const StyledSection = styled(UnstyledContainer)`
   display: flex;
   flex-direction: column;
   align-items: center;

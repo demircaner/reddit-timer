@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { defaultSubreddit } from '../config';
-import { NavLink } from '../style/Link';
+import { NavLink } from '../common/Links';
 
 export default function Navbar() {
   return (

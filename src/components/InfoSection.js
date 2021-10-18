@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Info from './Info';
+import UnstyledContainer from '../common/Container';
 
 export default function InfoSection() {
   return (
-    <StyledArticle>
+    <Container as="section">
       <Info id="how-it-works" headline="How it works">
         <StyledList>
           <li>We find the 500 top posts from the past year for a subreddit.</li>
@@ -38,15 +39,12 @@ export default function InfoSection() {
           {' '}
         </p>
       </Info>
-    </StyledArticle>
+    </Container>
   );
 }
 
-const StyledArticle = styled.section`
-  width: 100%;
-  max-width: 778px;
-  margin: 32px auto 0;
-  padding: 0 20px;
+const Container = styled(UnstyledContainer)`
+  margin-top: 119px;
 `;
 
 const StyledList = styled.ul`
