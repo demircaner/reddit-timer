@@ -37,7 +37,7 @@ describe('Header', () => {
     const { history } = setup();
     const searchLink = screen.getByRole('link', { name: /search/i });
     userEvent.click(searchLink);
-    const text = screen.getByText(/search page/i);
+    const text = screen.getByText(/Find the best time for a subreddit/i);
     expect(text).toBeInTheDocument();
     expect(history.location.pathname).toEqual('/search/javascript');
   });

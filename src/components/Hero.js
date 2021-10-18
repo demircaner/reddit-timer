@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import heatmap from '../assets/images/heatmap.png';
 import { defaultSubreddit } from '../config';
+import UnstyledButton from '../common/Button';
 
 export default function Hero() {
   return (
@@ -13,9 +14,9 @@ export default function Hero() {
         subreddit.
       </Subtitle>
 
-      <StyledButton to={`/search/${defaultSubreddit}`}>
+      <Button as={Link} to={`/search/${defaultSubreddit}`}>
         Show me the best time
-      </StyledButton>
+      </Button>
 
       <Subreddit>
         r/
@@ -45,17 +46,9 @@ const Subtitle = styled.p`
   letter-spacing: ${(props) => props.theme.font.letterSpacing.default};
 `;
 
-const StyledButton = styled(Link)`
-  padding: 10px 16px;
-  font-size: ${(props) => props.theme.font.size.small};
-  font-weight: 500;
-  color: ${(props) => props.theme.color.light};
-  background-color: ${(props) => props.theme.color.primary};
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+const Button = styled(UnstyledButton)`
   text-decoration: none;
-  text-transform: uppercase;
+  margin-bottom: 45px;
 `;
 
 const Subreddit = styled.p`
