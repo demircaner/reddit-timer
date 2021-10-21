@@ -11,6 +11,8 @@ export default function useSubredditPost() {
   /**
    * Redit API returns 100 posts per request
    * since we need first 500 posts, we need to send 5 requests
+   * using pagination in the API
+   * https://www.reddit.com/dev/api/
    */
   const fetchSubredditPosts = async (
     numOfRequests = 5,
@@ -34,7 +36,7 @@ export default function useSubredditPost() {
         const data = await res.json();
         lastId = data.data.after;
         posts.push(...data.data.children);
-        fetchSubredditPosts(numOfRequests - 1, lastId, posts);
+        await fetchSubredditPosts(numOfRequests - 1, lastId, posts);
       } catch (err) {
         setError(err);
         setIsLoading(false);

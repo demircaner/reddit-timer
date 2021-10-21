@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Spinner() {
-  return <StyledDiv />;
+  return <StyledDiv data-testid="spinner" />;
 }
 
 const StyledDiv = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 71px;
+  height: 71px;
   border: 5px solid ${(props) => props.theme.color.primary};
   border-left-color: transparent;
   border-radius: 50%;

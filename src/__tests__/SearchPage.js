@@ -48,4 +48,10 @@ describe('Subreddit Form', () => {
     userEvent.click(searchButton);
     expect(history.location.pathname).toEqual('/search/vuejs');
   });
+
+  test('Renders a sipnner while fetching', () => {
+    setup('/search/javascript');
+    const spinner = screen.getByTestId('spinner');
+    expect(spinner).toBeInTheDocument();
+  });
 });
