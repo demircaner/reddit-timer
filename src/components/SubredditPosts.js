@@ -8,7 +8,7 @@ export default function SubredditPosts() {
 
   return (
     <div>
-      {error && <ErrorDisplay>{error}</ErrorDisplay>}
+      {error && <ErrorDisplay />}
       {isLoading && <Spinner />}
       {subredditPosts.length > 0 && subredditPosts.length}
     </div>
