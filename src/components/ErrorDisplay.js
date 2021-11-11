@@ -3,7 +3,10 @@ import React from 'react';
 export default function ErrorDisplay() {
   return (
     <div>
-      <h2>Something went wrong</h2>
+      <h3>
+        Something went wrong. Please check the subreddit you entered and try
+        again.
+      </h3>
     </div>
   );
 }

@@ -49,9 +49,18 @@ describe('Subreddit Form', () => {
     expect(history.location.pathname).toEqual('/search/vuejs');
   });
 
-  test('Renders a sipnner while fetching', () => {
-    setup('/search/javascript');
+  test('Loads top posts for the subreddit in the URL', async () => {
+    setup('/search/reactjs');
     const spinner = screen.getByTestId('spinner');
     expect(spinner).toBeInTheDocument();
+    expect(await screen.findByText('500')).toBeInTheDocument();
+    expect(spinner).not.toBeInTheDocument();
+  });
+
+  test('renders error message', async () => {
+    setup('/search/failing-request');
+    expect(
+      await screen.findByText(/something went wrong/i),
+    ).toBeInTheDocument();
   });
 });
