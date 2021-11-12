@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import {
+  render, screen, within, waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route } from 'react-router-dom';
 import App from '../App';
@@ -47,5 +49,25 @@ describe('Subreddit Form', () => {
     });
     userEvent.click(searchButton);
     expect(history.location.pathname).toEqual('/search/vuejs');
+  });
+
+  test('Loads top posts for the subreddit in the URL', async () => {
+    setup('/search/javascript');
+    const spinner = screen.getByTestId('spinner');
+    expect(spinner).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText('500')).toBeInTheDocument(), {
+      timeout: 5000,
+    });
+    expect(spinner).not.toBeInTheDocument();
+  });
+
+  test('renders error message', async () => {
+    setup('/search/failing-request');
+    await waitFor(
+      () =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        expect(screen.getByText(/something went wrong/i)).toBeInTheDocument(),
+      { timeout: 5000 },
+    );
   });
 });

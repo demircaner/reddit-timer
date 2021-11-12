@@ -40,6 +40,7 @@ export const StyledForm = styled.form`
   margin: 20px 0 0;
   display: flex;
   align-items: center;
+  margin-bottom: 56px;
 `;
 
 export const StyledLabel = styled.label`
