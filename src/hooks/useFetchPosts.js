@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 export async function fetchPaginatedPosts(
   subreddit,
+  signal,
   previousPosts = [],
   after = null,
 ) {
@@ -9,7 +10,7 @@ export async function fetchPaginatedPosts(
   if (after) {
     url += `&after=${after}`;
   }
-  const response = await fetch(url);
+  const response = await fetch(url, { signal });
   const { data } = await response.json();
   const allPosts = previousPosts.concat(data.children);
 
@@ -21,7 +22,7 @@ export async function fetchPaginatedPosts(
 
   // the function calls itself and provides the after cursor of the
   // newly fetched response
-  return fetchPaginatedPosts(subreddit, allPosts, data.after);
+  return fetchPaginatedPosts(subreddit, signal, allPosts, data.after);
 }
 
 function useFetchPosts(subreddit) {
@@ -29,14 +30,25 @@ function useFetchPosts(subreddit) {
   const [status, setStatus] = useState('pending');
 
   useEffect(() => {
+    let controller = new AbortController();
+    const { signal } = controller;
     setStatus('pending');
 
-    fetchPaginatedPosts(subreddit)
+    fetchPaginatedPosts(subreddit, signal)
       .then((newPosts) => {
         setPosts(newPosts);
         setStatus('resolved');
+        controller = null;
       })
-      .catch(() => setStatus('rejected'));
+      .catch(() => {
+        setStatus('rejected');
+      });
+
+    return () => {
+      controller?.abort();
+      setPosts([]);
+      setStatus('pending');
+    };
   }, [subreddit]);
 
   return {

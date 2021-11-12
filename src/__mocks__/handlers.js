@@ -8,9 +8,9 @@ import response5 from './response-5.json'; // /r/javascript/top.json?t=year&limi
 const cursorResponseMap = {
   initial: response1,
   t3_k69yg0: response2,
-  t3_mvk1m0: response3,
-  t3_oym8a5: response4,
-  t3_ohhsdv: response5,
+  t3_k07g82: response3,
+  t3_mvk1m0: response4,
+  t3_oym8a5: response5,
 };
 
 function getJSONResponseForRequest(req) {
@@ -49,12 +49,14 @@ const handlers = [
     },
   ),
 
+  // eslint-disable-next-line arrow-body-style
   rest.options('https://www.reddit.com/*', (req, res, ctx) => {
-    res(ctx.status(200), ctx.json(getJSONResponseForRequest(req)));
+    return res(ctx.status(200), ctx.json(getJSONResponseForRequest(req)));
   }),
 
+  // eslint-disable-next-line arrow-body-style
   rest.get('https://www.reddit.com/*', (req, res, ctx) => {
-    res(ctx.status(200), ctx.json(getJSONResponseForRequest(req)));
+    return res(ctx.status(200), ctx.json(getJSONResponseForRequest(req)));
   }),
 ];
 

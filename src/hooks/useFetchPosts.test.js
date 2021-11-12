@@ -3,16 +3,17 @@ import { renderHook } from '@testing-library/react-hooks';
 import useFetchPosts from './useFetchPosts';
 
 test('loads 500 top posts from the Reddit API', async () => {
+  // eslint-disable-next-line arrow-body-style
   const { result, waitForNextUpdate } = renderHook(() => {
-    useFetchPosts('500-posts');
+    return useFetchPosts('500-posts');
   });
   expect(result.current.isLoading).toBe(true);
-  expect(result.current.subRedditPosts).toEqual([]);
+  expect(result.current.subredditPosts).toEqual([]);
 
-  await waitForNextUpdate();
+  await waitForNextUpdate({ timeout: 3000 });
 
   expect(result.current.isLoading).toBe(false);
-  expect(result.current.subRedditPosts.length).toEqual(500);
+  expect(result.current.subredditPosts.length).toEqual(500);
 
   const postTitles = result.current.subredditPosts.map(
     ({ data }) => data.title,
@@ -21,22 +22,24 @@ test('loads 500 top posts from the Reddit API', async () => {
 });
 
 test('stops loading when less than 500 posts are available', async () => {
+  // eslint-disable-next-line arrow-body-style
   const { result, waitForNextUpdate } = renderHook(() => {
-    useFetchPosts('less-than-500-posts');
+    return useFetchPosts('less-than-500-posts');
   });
 
-  await waitForNextUpdate();
+  await waitForNextUpdate({ timeout: 3000 });
 
   expect(result.current.isLoading).toBe(false);
-  expect(result.current.subredditPosts.length).toEqual(270);
+  expect(result.current.subredditPosts.length).toEqual(370);
 });
 
 test('returns error when a request fails', async () => {
+  // eslint-disable-next-line arrow-body-style
   const { result, waitForNextUpdate } = renderHook(() => {
-    useFetchPosts('failing-request');
+    return useFetchPosts('failing-request');
   });
 
-  await waitForNextUpdate();
+  await waitForNextUpdate({ timeout: 3000 });
 
   expect(result.current.isLoading).toBe(false);
   expect(result.current.hasError).toEqual(true);

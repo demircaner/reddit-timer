@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import {
+  render, screen, within, waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route } from 'react-router-dom';
 import App from '../App';
@@ -50,17 +52,22 @@ describe('Subreddit Form', () => {
   });
 
   test('Loads top posts for the subreddit in the URL', async () => {
-    setup('/search/reactjs');
+    setup('/search/javascript');
     const spinner = screen.getByTestId('spinner');
     expect(spinner).toBeInTheDocument();
-    expect(await screen.findByText('500')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText('500')).toBeInTheDocument(), {
+      timeout: 5000,
+    });
     expect(spinner).not.toBeInTheDocument();
   });
 
   test('renders error message', async () => {
     setup('/search/failing-request');
-    expect(
-      await screen.findByText(/something went wrong/i),
-    ).toBeInTheDocument();
+    await waitFor(
+      () =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        expect(screen.getByText(/something went wrong/i)).toBeInTheDocument(),
+      { timeout: 5000 },
+    );
   });
 });
