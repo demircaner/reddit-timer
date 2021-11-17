@@ -6,6 +6,8 @@ const theme = {
     midLight: '#d5d5d5',
     light: '#ffffff',
     primary: '#FDB755',
+    tableDay: '#1E2537',
+    tableTime: 'linear-gradient(#FEFEFE, #E9E9E9);',
   },
   size: {
     headerHeight: '100px',
