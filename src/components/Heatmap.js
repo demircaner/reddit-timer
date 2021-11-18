@@ -30,14 +30,30 @@ const days = [
   'Saturday',
 ];
 
-const heatmap = {};
+const populateHeatmap = (posts) => {
+  const timestamps = posts.map((post) => post.data.created_utc);
+  const heatmap = {};
 
-for (let i = 0; i < days.length; i += 1) {
-  heatmap[i] = {};
-  for (let j = 0; j < 24; j += 1) {
-    heatmap[i][j] = 0;
+  for (let i = 0; i < days.length; i += 1) {
+    heatmap[i] = {};
+    for (let j = 0; j < 24; j += 1) {
+      heatmap[i][j] = {
+        count: 0,
+        selected: false,
+      };
+    }
   }
-}
+
+  timestamps.forEach((time) => {
+    // Without multiplication with 1000 will get a value in 1970
+    const date = new Date(time * 1000);
+    const day = date.getUTCDay();
+    const hour = date.getUTCHours();
+    heatmap[day === 7 ? 0 : day][hour].count += 1;
+  });
+
+  return heatmap;
+};
 
 export default function Heatmap() {
   const { subreddit } = useParams();
@@ -45,19 +61,10 @@ export default function Heatmap() {
 
   if (hasError) return <ErrorDisplay />;
   if (isLoading) return <Spinner />;
-  console.log('Posts', subredditPosts);
 
-  const timestamps = subredditPosts.map((post) => post.data.created_utc);
-
-  timestamps.forEach((time) => {
-    const date = new Date(time * 1000);
-    const day = date.getUTCDay();
-    const hour = date.getUTCHours();
-    heatmap[day === 7 ? 0 : day][hour] += 1;
-  });
-
+  const heatmap = populateHeatmap(subredditPosts);
   return (
-    <Table>
+    <table>
       <thead>
         <tr>
           <EmptyColumn>&nbsp;</EmptyColumn>
@@ -71,18 +78,19 @@ export default function Heatmap() {
           <tr key={day}>
             <Day>{day}</Day>
             {Object.keys(heatmap[index]).map((time) => (
-              <Square key={days[index] + time}>{heatmap[index][time]}</Square>
+              <Square
+                key={days[index] + time}
+                count={heatmap[index][time].count}
+              >
+                {heatmap[index][time].count}
+              </Square>
             ))}
           </tr>
         ))}
       </tbody>
-    </Table>
+    </table>
   );
 }
-
-const Table = styled.table`
-  /* border: 1px solid black; */
-`;
 
 const EmptyColumn = styled.th.attrs({ colSpan: '2' })``;
 
@@ -103,5 +111,14 @@ const Square = styled.td`
   width: 40px;
   height: 40px;
   text-align: center;
-  /* border: 1px solid black; */
+  background: ${(props) => {
+    const colorIndex = props.count >= 10 ? 10 : props.count;
+    return props.theme.color.heatmapColors[colorIndex];
+  }};
+  color: ${(props) => props.theme.color.light};
+
+  &:hover {
+    outline: 1px solid black;
+    cursor: pointer;
+  }
 `;
