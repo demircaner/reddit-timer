@@ -5,11 +5,16 @@ import UnstyledContainer from '../common/Container';
 import Heatmap from '../components/Heatmap';
 
 export default function SearchPage() {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return (
     <StyledSection>
       <h1>Find the best time for a subreddit</h1>
       <SubredditForm />
       <Heatmap />
+      <p>
+        All times are shown in your timezone
+        <strong>{` ${timezone}`}</strong>
+      </p>
     </StyledSection>
   );
 }

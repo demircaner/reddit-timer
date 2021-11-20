@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useFetchPosts from '../hooks/useFetchPosts';
@@ -47,8 +47,8 @@ const populateHeatmap = (posts) => {
   timestamps.forEach((time) => {
     // Without multiplication with 1000 will get a value in 1970
     const date = new Date(time * 1000);
-    const day = date.getUTCDay();
-    const hour = date.getUTCHours();
+    const day = date.getDay();
+    const hour = date.getHours();
     heatmap[day === 7 ? 0 : day][hour].count += 1;
   });
 
@@ -59,10 +59,29 @@ export default function Heatmap() {
   const { subreddit } = useParams();
   const { subredditPosts, isLoading, hasError } = useFetchPosts(subreddit);
 
+  // eslint-disable-next-line no-unused-vars
+  const [heatmap, setHeatmap] = useState();
+  const [selectedBox, setSelectedBox] = useState([-1, -1]);
+
+  useEffect(() => {
+    setHeatmap(populateHeatmap(subredditPosts));
+  }, [subredditPosts]);
+
+  const handleClick = (i, j) => {
+    const newHeatmap = { ...heatmap };
+    const prevSelectedBox = [...selectedBox];
+    if (prevSelectedBox[0] >= 0) {
+      newHeatmap[prevSelectedBox[0]][prevSelectedBox[1]].selected = false;
+    }
+    newHeatmap[i][j].selected = true;
+
+    setSelectedBox([i, j]);
+    setHeatmap(newHeatmap);
+  };
+
   if (hasError) return <ErrorDisplay />;
   if (isLoading) return <Spinner />;
 
-  const heatmap = populateHeatmap(subredditPosts);
   return (
     <table>
       <thead>
@@ -79,8 +98,11 @@ export default function Heatmap() {
             <Day>{day}</Day>
             {Object.keys(heatmap[index]).map((time) => (
               <Square
+                role="gridcell"
                 key={days[index] + time}
                 count={heatmap[index][time].count}
+                selected={heatmap[index][time].selected}
+                onClick={() => handleClick(index, time)}
               >
                 {heatmap[index][time].count}
               </Square>
@@ -116,6 +138,7 @@ const Square = styled.td`
     return props.theme.color.heatmapColors[colorIndex];
   }};
   color: ${(props) => props.theme.color.light};
+  outline: ${(props) => (props.selected ? '1px solid black' : 'none')};
 
   &:hover {
     outline: 1px solid black;

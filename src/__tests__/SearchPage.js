@@ -1,6 +1,10 @@
 import React from 'react';
 import {
-  render, screen, within, waitFor,
+  render,
+  screen,
+  within,
+  waitFor,
+  fireEvent,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route } from 'react-router-dom';
@@ -55,9 +59,12 @@ describe('Subreddit Form', () => {
     setup('/search/javascript');
     const spinner = screen.getByTestId('spinner');
     expect(spinner).toBeInTheDocument();
-    await waitFor(() => expect(screen.getByText('500')).toBeInTheDocument(), {
-      timeout: 5000,
+    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument(), {
+      timeout: 8000,
     });
+    const box = screen.getAllByRole('gridcell')[0];
+    fireEvent.click(box);
+    expect(box).toHaveStyle('outline: 1px solid black');
     expect(spinner).not.toBeInTheDocument();
   });
 
