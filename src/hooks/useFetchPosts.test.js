@@ -1,14 +1,17 @@
+/* eslint-disable implicit-arrow-linebreak */
 // @ts-nocheck
 import { renderHook } from '@testing-library/react-hooks';
 import useFetchPosts from './useFetchPosts';
 
-const getNumPosts = (nestedPostsArray) => nestedPostsArray.reduce(
-  (numTotal, postsPerDay) => postsPerDay.reduce(
-    (numPerDay, postsPerHour) => numPerDay + postsPerHour,
-    numTotal,
-  ),
-  0,
-);
+const getNumPosts = (nestedPostsArray) =>
+  nestedPostsArray.reduce(
+    (numTotal, postsPerDay) =>
+      postsPerDay.reduce(
+        (numPerDay, postsPerHour) => numPerDay + postsPerHour,
+        numTotal,
+      ),
+    0,
+  );
 
 test('loads 500 top posts from the Reddit API', async () => {
   // eslint-disable-next-line arrow-body-style
