@@ -99,7 +99,11 @@ describe('heatmap', () => {
     expect(numberOfPostsPerCell).toMatchSnapshot();
 
     const timezone = screen.getByText('All times are shown in your timezone:');
-    expect(within(timezone).getByText('Europe/Istanbul')).toBeInTheDocument();
+    expect(
+      within(timezone).getByText(
+        Intl.DateTimeFormat().resolvedOptions().timeZone,
+      ),
+    ).toBeInTheDocument();
   });
 
   test('cell highlights on click', async () => {
