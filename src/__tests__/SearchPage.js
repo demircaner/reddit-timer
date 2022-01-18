@@ -49,29 +49,6 @@ describe('Subreddit Form', () => {
     userEvent.click(searchButton);
     expect(history.location.pathname).toEqual('/search/vuejs');
   });
-
-  // test('Loads top posts for the subreddit in the URL', async () => {
-  //   setup('/search/javascript');
-  //   const spinner = screen.getByTestId('spinner');
-  //   expect(spinner).toBeInTheDocument();
-  //   await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument(), {
-  //     timeout: 8000,
-  //   });
-  //   const box = screen.getAllByRole('gridcell')[0];
-  //   fireEvent.click(box);
-  //   expect(box).toHaveStyle('outline: 1px solid black');
-  //   expect(spinner).not.toBeInTheDocument();
-  // });
-
-  // test('renders error message', async () => {
-  //   setup('/search/failing-request');
-  //   await waitFor(
-  //     () =>
-  //       // eslint-disable-next-line implicit-arrow-linebreak
-  //       expect(screen.getByText(/something went wrong/i)).toBeInTheDocument(),
-  //     { timeout: 5000 },
-  //   );
-  // });
 });
 
 describe('heatmap', () => {
@@ -106,7 +83,7 @@ describe('heatmap', () => {
     ).toBeInTheDocument();
   });
 
-  test('cell highlights on click', async () => {
+  test('cell highlights on click and shows posts table', async () => {
     setup('/search/reactjs');
 
     const heatmap = await screen.findByTestId('heatmap');
@@ -117,6 +94,9 @@ describe('heatmap', () => {
 
     userEvent.click(cellToClick);
     expect(cellToClick).toHaveStyle('border: 1px solid #1e2537');
+
+    // userEvent.click(cellToClick);
+    // expect(screen.getByText(/Posts/i)).toBeInTheDocument();
   });
 
   test('renders error message', async () => {

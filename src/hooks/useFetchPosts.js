@@ -69,6 +69,7 @@ function groupPostsPerDayAndHour(posts) {
 }
 
 function useFetchPosts(subreddit) {
+  const [subredditPosts, setPosts] = useState([]);
   const [postsPerDay, setPostsPerDay] = useState([]);
   const [status, setStatus] = useState('pending');
 
@@ -78,7 +79,10 @@ function useFetchPosts(subreddit) {
     setStatus('pending');
 
     fetchPaginatedPosts(subreddit, signal)
-      .then((posts) => groupPostsPerDayAndHour(posts))
+      .then((posts) => {
+        setPosts(posts);
+        return groupPostsPerDayAndHour(posts);
+      })
       .then((newPostsPerDay) => {
         setPostsPerDay(newPostsPerDay);
         setStatus('resolved');
@@ -98,6 +102,7 @@ function useFetchPosts(subreddit) {
   return {
     isLoading: status === 'pending',
     hasError: status === 'rejected',
+    subredditPosts,
     postsPerDay,
   };
 }
