@@ -1,3 +1,5 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
 import { useEffect, useState } from 'react';
 
 const NUM_POSTS_TO_FETCH = 500;
@@ -49,20 +51,32 @@ export async function fetchPaginatedPosts(
  * dayOfWeek is a number between 0 and 6, hour a number between 0 and 23.
  *
  * @param {array} posts the concatenated list of posts returned from fetchPaginatedPosts
- * @returns {array} nested 2D array that contains the number of posts grouped by week day and hour
+ * @returns {array} nested 3D array that contains the number of posts grouped by week day and hour
  */
 
 function groupPostsPerDayAndHour(posts) {
   const postsPerDay = Array(7)
     .fill()
-    .map(() => Array(24).fill(0));
+    .map(() =>
+      Array(24)
+        .fill()
+        .map(() => []),
+    );
 
   posts.forEach((post) => {
-    const createdAt = new Date(post.data.created_utc * 1000);
-    const day = createdAt.getDay();
-    const hour = createdAt.getHours();
+    const createdAtDate = new Date(post.data.created_utc * 1000);
+    const day = createdAtDate.getDay();
+    const hour = createdAtDate.getHours();
 
-    postsPerDay[day][hour] += 1;
+    postsPerDay[day][hour].push({
+      createdAt: createdAtDate,
+      title: post.data.title,
+      url: `https://reddit.com${post.data.permalink}`,
+      score: post.data.score,
+      numComments: post.data.num_comments,
+      author: post.data.author,
+      authorId: post.data.author_fullname,
+    });
   });
 
   return postsPerDay;
