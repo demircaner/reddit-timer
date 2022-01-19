@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { arrayOf, func, number, shape } from 'prop-types';
 import HeatmapHeaderRow from './HeatmapHeaderRow';
 import HeatmapRow from './HeatmapRow';
+import { postType } from '../types';
 
 function Heatmap({ postsPerDay, onClickHour, selectedDayAndHour }) {
   return (
@@ -35,7 +36,7 @@ function Heatmap({ postsPerDay, onClickHour, selectedDayAndHour }) {
 }
 
 Heatmap.propTypes = {
-  postsPerDay: arrayOf(arrayOf(number)).isRequired,
+  postsPerDay: arrayOf(arrayOf(arrayOf(postType))).isRequired,
   onClickHour: func.isRequired,
   selectedDayAndHour: shape({
     day: number,

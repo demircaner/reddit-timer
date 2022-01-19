@@ -83,7 +83,7 @@ describe('heatmap', () => {
     ).toBeInTheDocument();
   });
 
-  test('cell highlights on click and shows posts table', async () => {
+  test('cell highlights on click', async () => {
     setup('/search/reactjs');
 
     const heatmap = await screen.findByTestId('heatmap');
@@ -94,9 +94,6 @@ describe('heatmap', () => {
 
     userEvent.click(cellToClick);
     expect(cellToClick).toHaveStyle('border: 1px solid #1e2537');
-
-    // userEvent.click(cellToClick);
-    // expect(screen.getByText(/Posts/i)).toBeInTheDocument();
   });
 
   test('renders error message', async () => {
@@ -106,5 +103,66 @@ describe('heatmap', () => {
       await screen.findByText(/something went wrong/i),
     ).toBeInTheDocument();
     expect(screen.queryByText('loading-spinner.svg')).not.toBeInTheDocument();
+  });
+});
+
+async function clickFirstCellWithValue(value) {
+  const heatmap = await screen.findByTestId('heatmap');
+  const cell = within(heatmap).getAllByText(value)[0];
+  userEvent.click(cell);
+}
+
+describe('posts table', () => {
+  test('is not visible when no cell is clicked', async () => {
+    setup('/search/reactjs');
+    await screen.findByTestId('heatmap');
+
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+  });
+
+  test('is not visible when cell with no posts is clicked', async () => {
+    setup('/search/reactjs');
+    await clickFirstCellWithValue('0');
+
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+  });
+
+  test('shows posts ordered by time according to cell that is clicked', async () => {
+    setup('/search/reactjs');
+    await clickFirstCellWithValue('4');
+
+    const table = screen.getByRole('table');
+    const tableRows = within(table).getAllByRole('row').slice(1);
+
+    const tableContent = tableRows.map((row) => {
+      const cells = within(row).getAllByRole('cell');
+      const titleLink = within(cells[0]).getByRole('link');
+      const authorLink = within(cells[4]).getByRole('link');
+      return {
+        title: titleLink.innerHTML,
+        href: titleLink.href,
+        time: cells[1].innerHTML,
+        score: cells[2].innerHTML,
+        numComments: cells[3].innerHTML,
+        author: authorLink.innerHTML,
+        authorHref: authorLink.href,
+      };
+    });
+
+    expect(tableContent).toMatchSnapshot();
+  });
+
+  test('shows no link for deleted user', async () => {
+    setup('/search/reactjs');
+    const heatmap = await screen.findByTestId('heatmap');
+    const sunday5pm = within(heatmap).getAllByText('6')[1];
+    userEvent.click(sunday5pm);
+
+    // const table = screen.getByRole('table');
+    // const rowWithDeletedUser = within(table).getAllByRole('row')[4];
+
+    // const authorCell = within(rowWithDeletedUser).getAllByRole('cell')[4];
+    // expect(within(authorCell).queryByRole('link')).not.toBeInTheDocument();
+    // expect(authorCell.innerHTML).toBe('[deleted]');
   });
 });

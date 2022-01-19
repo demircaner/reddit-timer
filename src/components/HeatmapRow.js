@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { arrayOf, func, number } from 'prop-types';
+import { postType } from '../types';
 
 const weekdays = [
   'Sunday',
@@ -18,16 +19,16 @@ function HeatmapRow({ day, postsPerHour, onClickHour, selectedHour }) {
     <Container>
       <Weekday>{weekdays[day]}</Weekday>
 
-      {postsPerHour.map((numPosts, hour) => (
+      {postsPerHour.map((posts, hour) => (
         <Hour
           // eslint-disable-next-line react/no-array-index-key
           key={hour}
-          numPosts={numPosts}
+          numPosts={posts.length}
           onClick={() => onClickHour({ day, hour })}
           selected={hour === selectedHour}
           type="button"
         >
-          {numPosts}
+          {posts.length}
         </Hour>
       ))}
     </Container>
@@ -36,7 +37,7 @@ function HeatmapRow({ day, postsPerHour, onClickHour, selectedHour }) {
 
 HeatmapRow.propTypes = {
   day: number.isRequired,
-  postsPerHour: arrayOf(number).isRequired,
+  postsPerHour: arrayOf(arrayOf(postType)).isRequired,
   onClickHour: func.isRequired,
   selectedHour: number,
 };

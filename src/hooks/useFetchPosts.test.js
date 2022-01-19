@@ -7,7 +7,7 @@ const getNumPosts = (nestedPostsArray) =>
   nestedPostsArray.reduce(
     (numTotal, postsPerDay) =>
       postsPerDay.reduce(
-        (numPerDay, postsPerHour) => numPerDay + postsPerHour,
+        (numPerDay, postsPerHour) => numPerDay + postsPerHour.length,
         numTotal,
       ),
     0,

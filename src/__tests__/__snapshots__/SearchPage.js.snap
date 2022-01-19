@@ -172,3 +172,44 @@ Array [
   "1",
 ]
 `;
+
+exports[`posts table shows posts ordered by time according to cell that is clicked 1`] = `
+Array [
+  Object {
+    "author": "s_magik",
+    "authorHref": "https://www.reddit.com/user/s_magik",
+    "href": "https://reddit.com/r/javascript/comments/k7rxg7/open_source_airtable_built_using_reactjs/",
+    "numComments": "21",
+    "score": "239",
+    "time": "12:08 pm",
+    "title": "Open source Airtable: Built using ReactJS + Firestore DB",
+  },
+  Object {
+    "author": "zvikfir",
+    "authorHref": "https://www.reddit.com/user/zvikfir",
+    "href": "https://reddit.com/r/javascript/comments/pr5cef/nextjs_nestjs_mobx_and_how_i_structured_my/",
+    "numComments": "12",
+    "score": "129",
+    "time": "12:17 pm",
+    "title": "Next.js, NestJS, MobX and how I structured my open-source project",
+  },
+  Object {
+    "author": "Well_Gravity",
+    "authorHref": "https://www.reddit.com/user/Well_Gravity",
+    "href": "https://reddit.com/r/javascript/comments/ludsvl/reading_an_excel_file_in_node/",
+    "numComments": "7",
+    "score": "110",
+    "time": "12:31 pm",
+    "title": "Reading an Excel file in node",
+  },
+  Object {
+    "author": "GunvantSr",
+    "authorHref": "https://www.reddit.com/user/GunvantSr",
+    "href": "https://reddit.com/r/javascript/comments/q55pz1/a_simple_boilerplate_generator_for_your_node/",
+    "numComments": "2",
+    "score": "259",
+    "time": "12:44 pm",
+    "title": "A simple boilerplate generator for your node express backend project",
+  },
+]
+`;
