@@ -50,7 +50,7 @@ export default function PostsTable({ posts }) {
                   '[deleted]'
                 ) : (
                   <a
-                    href={`https://reddit.com/user/${post.author}`}
+                    href={`https://reddit.com/u/${post.author}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
