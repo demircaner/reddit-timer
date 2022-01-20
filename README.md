@@ -1,68 +1,92 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Welcome to Reddit Timer App :wave:
 
-## Available Scripts
+## About This Project
 
-In the project directory, you can run:
+Reddit is one of the most popular places to share and promote content. Reddit Timer helps content creators to find the right time to share their content on Reddit so they can reach more people.
 
-### `yarn start`
+I implemented this project in the context of a course at ooloo.io. This course mimics a professional real-world development environment.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Designs were provided via Figma. The project was split into small tasks using Clickup as a project management tool. I created a pull request for every task. The code was reviewed and feedback provided if necessary.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+In this project I have been exposed to many practical techniques. Examples as following but not limit to:
 
-### `yarn test`
+- Creating pixel-perfect designs
+- Planning and implementing a complex UI component
+- Implement data fetching with error handling
+- Debugging inside an IDE
+- Writing integration tests
+- Professional Git workflow with pull requests
+- Code reviews
+- Continuous integration
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I was free to choose any technical stack, packages, and coding styles to finish the project as long as I met the acceptance criteria of a given task. The only limitation was to use React. The code reviews gave me insights into best practices to follow. I was able to learn a lot and evolve my front-end knowledge rapidly.
 
-### `yarn build`
+#### Homepage
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img width="1434" alt="Screen Shot 2022-01-20 at 6 35 39 PM" src="https://user-images.githubusercontent.com/29341806/150370688-71519d1c-9f65-4647-ac88-2291bd9b5e3f.png">
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### Serachpage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img width="1438" alt="Screen Shot 2022-01-19 at 5 27 48 PM" src="https://user-images.githubusercontent.com/29341806/150150434-c0e61388-a90d-42cb-bc62-c70b38fc0ef9.png">
 
-### `yarn eject`
+<img width="1427" alt="Screen Shot 2022-01-20 at 6 44 25 PM" src="https://user-images.githubusercontent.com/29341806/150372131-ba5c106e-76c3-4618-bc83-72e71b5a5c83.png">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img width="1418" alt="Screen Shot 2022-01-20 at 6 46 09 PM" src="https://user-images.githubusercontent.com/29341806/150372441-e3583b0d-ba5d-42eb-a4e6-9bfe39b8f349.png">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### :rocket: [Demo Link]()
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Tech Stack
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- React (with Hooks)
+- React Router
+- React Testing Library
+- Styled-components
 
-## Learn More
+## Tools
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [Clickup](https://clickup.com/)
+- [Figma](https://www.figma.com/)
+- [Perfect Pixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi?hl=en)
+- Slack
+- Github
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Install
 
-### Code Splitting
+```bash
+yarn install
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Usage
 
-### Analyzing the Bundle Size
+```bash
+yarn start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Run test
 
-### Making a Progressive Web App
+```bash
+yarn test
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Linting
 
-### Advanced Configuration
+```bash
+yarn lint
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Formatting
 
-### Deployment
+```bash
+yarn format
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Author
 
-### `yarn build` fails to minify
+:bust_in_silhouette: Caner Demir
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [Linkedin](https://www.linkedin.com/in/demir-caner/)
+- [Github](https://github.com/demircaner)
+
+---
+
+Special thanks to [Johannes Kettmann](https://jkettmann.com/) and [ooloo.io](https://ooloo.io/)
